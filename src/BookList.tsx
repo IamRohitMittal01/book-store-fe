@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './booklist.css';
 
 interface Book {
   id: number;
@@ -27,17 +28,18 @@ const BookList: React.FC = () => {
   return (
     <div>
       <h1>Book List</h1>
-      <ul>
+      <div className="book-list">
         {books.map(book => (
-          <li key={book.id}>
+          <div className="book-tile" key={book.id}>
+            <img src={book.coverImage} alt={book.title} />
             <h3>{book.title}</h3>
             <p>{book.description}</p>
-            <p>Price: ${book.price}</p>
-          </li>
+            <p>save ${book.discountRate}</p>
+            <p>${book.price}</p>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
-
 export default BookList;
