@@ -34,8 +34,8 @@ const BookList: React.FC = () => {
             <img src={book.coverImage} alt={book.title} />
             <h3>{book.title}</h3>
             <p>{book.description}</p>
-            <p>save ${book.discountRate}</p>
-            <p>${book.price}</p>
+            <h6>save ${book.discountRate}</h6>
+            <h6>Buy @${book.price}</h6>
           </div>
         ))}
       </div>
