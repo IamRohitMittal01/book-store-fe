@@ -5,7 +5,7 @@ import './booklist.css';
 interface Book {
   id: number;
   title: string;
-  discountRate: number,
+  discountRate: number;
   description: string;
   coverImage: string;
   price: number;
@@ -16,11 +16,12 @@ const BookList: React.FC = () => {
 
   useEffect(() => {
     // Make an API call to fetch all books from the server
-    axios.get<Book[]>('http://localhost:3000/books')
-      .then(response => {
+    axios
+      .get<Book[]>('http://localhost:3000/books')
+      .then((response) => {
         setBooks(response.data);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error fetching books:', error);
       });
   }, []);
@@ -29,17 +30,24 @@ const BookList: React.FC = () => {
     <div>
       <h1>Book List</h1>
       <div className="book-list">
-        {books.map(book => (
+        {books.map((book) => (
           <div className="book-tile" key={book.id}>
             <img src={book.coverImage} alt={book.title} />
             <h3>{book.title}</h3>
             <p>{book.description}</p>
-            <h6>save ${book.discountRate}</h6>
-            <h6>Buy @${book.price}</h6>
+            <div className="price-container">
+              <div style={{ flex: 1 }}>
+                <h6 style={{ color: 'red' }}>${book.discountRate}</h6>
+              </div>
+              <div style={{ flex: 1, textAlign: 'right' }}>
+                <h6>@${book.price}</h6>
+              </div>
+            </div>
           </div>
         ))}
       </div>
     </div>
   );
 };
+
 export default BookList;

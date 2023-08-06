@@ -35,3 +35,8 @@
 .book-tile p {
     margin: 5px 0;
 }
+
+.price-container {
+    display: flex;
+    justify-content: space-between;
+  }
